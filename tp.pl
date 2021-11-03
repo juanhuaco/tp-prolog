@@ -10,6 +10,21 @@ tableroEjemplo(T):-
           [b,a,a,b,a,b,-],
           [a,a,b,b,a,b,-]].
 
+tableroEmpate(T):-
+	T =  [[a,a,a,b,a,a,a],
+          [a,b,a,b,a,b,a],
+          [a,a,a,b,a,a,a],
+          [b,b,b,a,b,b,b],
+          [a,a,a,b,a,a,a],
+          [a,b,a,b,a,b,a]].
+
+tableroLlenoNoEmpate(T):-
+	T =  [[a,a,a,a,a,b,a],
+          [b,a,b,a,b,a,b],
+          [a,b,a,b,a,b,a],
+          [b,a,b,a,b,a,b],
+          [a,b,a,b,a,b,a],
+          [b,a,b,a,b,a,b]].
 
 /*============EJERCICIO 1===============*/
 
@@ -73,7 +88,19 @@ conecta4(Tablero,Ficha,Retorno):- columna(X), fila(Y), ficha(Ficha),
              [R11, R12],
              [R21, R22],
              [R31, R32]].
-    
+
+/*==================EJERCICIO 6======================*/
+
+noEmpate(Tablero):- 
+    columna(Columna), ficha(F1),
+    ingresarFicha(Tablero, Columna, F1, _AA);
+    ficha(F2),
+    conecta4(Tablero,F2,_A).
+
+empate(Tablero):- not(noEmpate(Tablero)).
+
+/*==================EJERCICIO 7======================*/
+
 
 /*Funciones Auxiliares*/
 posicion([Elemento|Resto], Pos, Elemento):- longitud(Resto, Longitud), 7 is Longitud+Pos.
