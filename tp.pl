@@ -1,9 +1,35 @@
 :-use_rendering(table).
 
+/*Ejemplos de Ejecucion*/
+/* ===Ingresar fichas
+tableroInicial(T),
+ingresarFicha(T, 1, a, T2),
+ingresarFicha(T2, 1, b, T3),
+ingresarFicha(T3, 1, a, T4),
+ingresarFicha(T4, 1, b, T5),
+ingresarFicha(T5, 1, a, T6),
+ingresarFicha(T6, 1, b, T7),
+contenido(T7, [3, 1], Content).
+*/
+
+tableroEjemplo(T):-
+    T =  [[-,-,-,b,-,-,-],
+          [-,-,-,a,-,-,-],
+          [-,-,-,a,-,-,-],
+          [a,-,b,a,-,-,-],
+          [b,a,a,b,a,-,-],
+          [b,a,b,b,a,b,-]].
+
+
 /*============EJERCICIO 1===============*/
 
 tableroInicial(T):-
-    T = [[-,-,-,-,-,-,-],[-,-,-,-,-,-,-],[-,-,-,-,-,-,-],[-,-,-,-,-,-,-],[-,-,-,-,-,-,-],[-,-,-,-,-,-,-]].
+    T = [[-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-]].
 
 /*===========EJERCICIO 2================*/
 
@@ -25,6 +51,12 @@ ingresarFicha([F1, F2|[]], Columna, Ficha, [T1, T2|[]]):-
     posicion(F2, Columna, Ret2), Ret2='-',
     T1 = F1,
     remplazar(F2, Columna, Ficha, T2).
+
+/*==================EJERCICIO 3======================*/
+
+columnaDisp(Tablero, Columna):-
+    columna(Columna),
+    ingresarFicha(Tablero, Columna, _, _).
 
 
 /*==================EJERCICIO 4======================*/
