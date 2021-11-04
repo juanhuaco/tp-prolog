@@ -1,6 +1,13 @@
 :-use_rendering(table).
 
 /*Ejemplos de Ejecucion*/
+tableroEjemploJugadaGanadora(T):-
+    T =  [[-,-,-,b,-,-,-],
+          [-,-,-,a,-,-,-],
+          [-,-,-,a,-,-,-],
+          [a,-,b,a,b,b,-],
+          [b,a,a,b,a,b,-],
+          [a,a,b,b,a,b,-]].
 
 tableroEjemplo(T):-
     T =  [[-,-,-,b,-,-,-],
@@ -100,6 +107,12 @@ noEmpate(Tablero):-
 empate(Tablero):- not(noEmpate(Tablero)).
 
 /*==================EJERCICIO 7======================*/
+
+jugadaGanadora(Tablero,Ficha,Columna):-columna(Columna), ficha(Ficha),
+    ingresarFicha(Tablero, Columna, Ficha, T2),
+    conecta4(T2,Ficha, _).
+
+/*==================EJERCICIO 8======================*/
 
 
 /*Funciones Auxiliares*/
