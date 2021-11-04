@@ -1,6 +1,14 @@
 :-use_rendering(table).
 
 /*Ejemplos de Ejecucion*/
+tableroEjemplo8(T):-
+    T =  [[-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,a,-,-,-],
+          [-,-,-,a,-,-,-],
+          [b,b,b,a,a,-,-]].
+
 tableroEjemploJugadaGanadora(T):-
     T =  [[-,-,-,b,-,-,-],
           [-,-,-,a,-,-,-],
@@ -46,19 +54,19 @@ tableroInicial(T):-
 /*===========EJERCICIO 2================*/
 
 /*haya una ficha abajo - remplazamos*/
-ingresarFicha([F1, F2|Fs], Columna, Ficha, [T1, T2|Ts]):- 
+ingresarFicha([F1, F2|Fs], Columna, Ficha, [T1, T2|Ts]):- columna(Columna), ficha(Ficha),
     posicion(F1, Columna, Ret1), Ret1='-',
     posicion(F2, Columna, Ret2), Ret2\='-',!,
     T2 = F2, Ts = Fs,
     remplazar(F1, Columna, Ficha, T1).
 /*no haya ficha - bajamos - evaluamos again*/
-ingresarFicha([F1, F2|[Fs1 | Fss]], Columna, Ficha, [T1, T2|[Ts1|Tss]]):-
+ingresarFicha([F1, F2|[Fs1 | Fss]], Columna, Ficha, [T1, T2|[Ts1|Tss]]):- columna(Columna), ficha(Ficha),
     posicion(F1, Columna, Ret1), Ret1='-',
     posicion(F2, Columna, Ret2), Ret2='-',
     T1 = F1,
     ingresarFicha([F2, Fs1|Fss], Columna, Ficha, [T2, Ts1|Tss]).
 /*estamos es la ultima fila - Remplazamos*/
-ingresarFicha([F1, F2|[]], Columna, Ficha, [T1, T2|[]]):-
+ingresarFicha([F1, F2|[]], Columna, Ficha, [T1, T2|[]]):- columna(Columna), ficha(Ficha),
     posicion(F1, Columna, Ret1), Ret1='-',
     posicion(F2, Columna, Ret2), Ret2='-',
     T1 = F1,
@@ -73,10 +81,10 @@ columnaDisp(Tablero, Columna):-
 
 /*==================EJERCICIO 4======================*/
 
-contenido([T|Ts],[Y, X],Ficha):-
+contenido([T|Ts],[Y, X],Ficha):- columna(X), fila(Y),
     longitud(Ts, L), 6 is L+Y,!, posicion(T, X, Ficha).
 
-contenido([_T|Ts],[Y, X],Ficha):-
+contenido([_T|Ts],[Y, X],Ficha):- columna(X), fila(Y),
     longitud(Ts, L), not(6 is L+Y),
     contenido(Ts,[Y, X],Ficha).
 
@@ -113,6 +121,13 @@ jugadaGanadora(Tablero,Ficha,Columna):-columna(Columna), ficha(Ficha),
     conecta4(T2,Ficha, _).
 
 /*==================EJERCICIO 8======================*/
+
+jugadaSegura(Tablero,Ficha,Columna):- columna(Columna), ficha(Ficha), ficha(Rival),
+    Rival\=Ficha,
+    ingresarFicha(Tablero, Columna, Ficha, T2),
+    not(jugadaGanadora(T2, Rival, _)).
+
+/*==================EJERCICIO 9======================*/
 
 
 /*Funciones Auxiliares*/
