@@ -1,12 +1,28 @@
 :-use_rendering(table).
 
 /*Ejemplos de Ejecucion*/
-tableroEjemplo8(T):-
+tableroEjemplo9(T):-
+    T =  [[-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,a],
+          [-,-,-,a,-,-,a],
+          [-,-,-,b,a,b,b],
+          [a,a,b,b,a,b,b]].
+
+tableroEjemplo8a(T):-
     T =  [[-,-,-,-,-,-,-],
           [-,-,-,-,-,-,-],
           [-,-,-,-,-,-,-],
           [-,-,-,a,-,-,-],
           [-,-,-,a,-,-,-],
+          [b,b,b,a,a,-,-]].
+
+tableroEjemplo8b(T):-
+    T =  [[-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,a,-,-,-,-],
+          [b,b,b,a,-,-,-],
           [b,b,b,a,a,-,-]].
 
 tableroEjemploJugadaGanadora(T):-
@@ -122,13 +138,19 @@ jugadaGanadora(Tablero,Ficha,Columna):-columna(Columna), ficha(Ficha),
 
 /*==================EJERCICIO 8======================*/
 
-jugadaSegura(Tablero,Ficha,Columna):- columna(Columna), ficha(Ficha), ficha(Rival),
+jugadaSegura(Tablero,Ficha,Columna):- columna(Columna), columna(C2), ficha(Ficha), ficha(Rival),
     Rival\=Ficha,
     ingresarFicha(Tablero, Columna, Ficha, T2),
-    not(jugadaGanadora(T2, Rival, _)).
+    not(jugadaGanadora(T2, Rival, C2)).
 
 /*==================EJERCICIO 9======================*/
 
+jugadaDefinitiva(Tablero,Ficha,Columna):- columna(Columna), ficha(Ficha), ficha(Rival),
+    Rival\=Ficha,
+    ingresarFicha(Tablero,Columna,Ficha,T2),
+    jugadaSegura(T2, Rival, _).
+
+/*====================================================*/
 
 /*Funciones Auxiliares*/
 posicion([Elemento|Resto], Pos, Elemento):- longitud(Resto, Longitud), 7 is Longitud+Pos.
