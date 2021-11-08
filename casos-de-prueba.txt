@@ -52,3 +52,5 @@ empate(T).
 
 ===Ejercicio 7 ====
 
+tableroEjemploJugadaGanadora(T),
+jugadaGanadora(T, F, C).

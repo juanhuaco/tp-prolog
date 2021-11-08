@@ -94,9 +94,18 @@ empate(Tablero):- not(noEmpate(Tablero)).
 
 /*==================EJERCICIO 7======================*/
 
-jugadaGanadora(Tablero,Ficha,Columna):-columna(Columna), ficha(Ficha),
+jugadaGanadora(Tablero,Ficha,Columna):-
+    nb_setval(parFichaColumna, []),!,
+    
+    columna(Columna), ficha(Ficha),
     ingresarFicha(Tablero, Columna, Ficha, T2),
-    conecta4(T2,Ficha, _).
+    conecta4(T2,Ficha, _),
+    
+    nb_getval(parFichaColumna, M),
+    not(member([Ficha, Columna], M)),
+    append([[Ficha, Columna]], M, NewMemoria),
+    nb_setval(parFichaColumna, NewMemoria).
+    
 
 /*==================EJERCICIO 8======================*/
 
