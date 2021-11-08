@@ -37,3 +37,8 @@ contenido(T, [1, 1], F1),
 contenido(T, [6, 1], F2),
 contenido(T, [5, 3], F3).
 
+====Ejercicio 5=====
+
+tableroEjemplo5(T),
+conecta4(T, F, L).
+

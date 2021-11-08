@@ -51,17 +51,20 @@ contenido([_T|Ts],[Y, X],Ficha):- columna(X), fila(Y),
 
 conecta4(Tablero,Ficha,Retorno):- columna(X), fila(Y), ficha(Ficha),
     direccion(Horizontal, Vertical),
+    
+    Y1 is Y+(Vertical), X1 is X+(Horizontal), 
+    Y2 is Y+(2*Vertical), X2 is X+(2*Horizontal), 
+    Y3 is Y+(3*Vertical), X3 is X+(3*Horizontal), 
+    
 	contenido(Tablero, [Y, X], Ficha),
-    contenido(Tablero, [Y+(Vertical), X+(Horizontal)], Ficha),
-    contenido(Tablero, [Y+(2*Vertical),X+(2*Horizontal)], Ficha),
-    contenido(Tablero, [Y+(3*Vertical), X+(3*Horizontal)], Ficha),!,
-    R11 is Y+(Vertical),R12 is X+(Horizontal),
-    R21 is Y+(2*Vertical),R22 is X+(2*Horizontal),
-    R31 is Y+(3*Vertical),R32 is X+(3*Horizontal),
+    contenido(Tablero, [Y1, X1], Ficha),
+    contenido(Tablero, [Y2, X2], Ficha),
+    contenido(Tablero, [Y3, X3], Ficha),
+
     Retorno=[[Y, X], 
-             [R11, R12],
-             [R21, R22],
-             [R31, R32]].
+             [Y1, X1],
+             [Y2, X2],
+             [Y3, X3]].
 
 /*==================EJERCICIO 6======================*/
 
@@ -148,6 +151,14 @@ tableroEjemplo3a(T):-
           [a,a,b,b,a,b,b]].
 
 tableroEjemplo4(T):-
+    T =  [[-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,b,-,-],
+          [-,-,-,-,b,-,-],
+          [-,-,a,-,b,-,-],
+          [b,a,a,a,b,-,-]].
+
+tableroEjemplo5(T):-
     T =  [[-,-,-,-,-,-,-],
           [-,-,-,-,-,-,-],
           [-,-,-,-,b,-,-],
