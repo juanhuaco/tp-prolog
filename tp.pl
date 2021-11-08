@@ -124,10 +124,11 @@ jugadaSegura(Tablero,Ficha,Columna):-
 
 /*==================EJERCICIO 9======================*/
 
-jugadaDefinitiva(Tablero,Ficha,Columna):-  ficha(Ficha), ficha(Rival), columna(Columna),
+jugadaDefinitiva(Tablero,Ficha,Columna):- 
+    ficha(Ficha), ficha(Rival), columna(Columna),
     Rival\=Ficha,
     ingresarFicha(Tablero,Columna,Ficha,T2),
-    jugadaSegura(T2, Rival, _).
+    not(jugadaSegura(T2, Rival, _)).
 
 /*====================================================*/
 

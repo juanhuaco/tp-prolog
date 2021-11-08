@@ -67,3 +67,6 @@ tableroEjemplo8c(T),
 jugadaSegura(T, F, C).
 
 ===Ejercicio 9 ====
+
+tableroEjemplo9(T),
+jugadaDefinitiva(T, F, C).
