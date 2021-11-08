@@ -1,62 +1,5 @@
 :-use_rendering(table).
 
-/*Ejemplos de Ejecucion*/
-tableroEjemplo9(T):-
-    T =  [[-,-,-,-,-,-,-],
-          [-,-,-,-,-,-,-],
-          [-,-,-,-,-,-,a],
-          [-,-,-,a,-,-,a],
-          [-,-,-,b,a,b,b],
-          [a,a,b,b,a,b,b]].
-
-tableroEjemplo8a(T):-
-    T =  [[-,-,-,-,-,-,-],
-          [-,-,-,-,-,-,-],
-          [-,-,-,-,-,-,-],
-          [-,-,-,a,-,-,-],
-          [-,-,-,a,-,-,-],
-          [b,b,b,a,a,-,-]].
-
-tableroEjemplo8b(T):-
-    T =  [[-,-,-,-,-,-,-],
-          [-,-,-,-,-,-,-],
-          [-,-,-,-,-,-,-],
-          [-,-,a,-,-,-,-],
-          [b,b,b,a,-,-,-],
-          [b,b,b,a,a,-,-]].
-
-tableroEjemploJugadaGanadora(T):-
-    T =  [[-,-,-,b,-,-,-],
-          [-,-,-,a,-,-,-],
-          [-,-,-,a,-,-,-],
-          [a,-,b,a,b,b,-],
-          [b,a,a,b,a,b,-],
-          [a,a,b,b,a,b,-]].
-
-tableroEjemplo(T):-
-    T =  [[-,-,-,b,-,-,-],
-          [-,-,-,a,-,-,-],
-          [-,-,-,a,a,-,-],
-          [a,-,b,a,b,b,-],
-          [b,a,a,b,a,b,-],
-          [a,a,b,b,a,b,-]].
-
-tableroEmpate(T):-
-	T =  [[a,a,a,b,a,a,a],
-          [a,b,a,b,a,b,a],
-          [a,a,a,b,a,a,a],
-          [b,b,b,a,b,b,b],
-          [a,a,a,b,a,a,a],
-          [a,b,a,b,a,b,a]].
-
-tableroLlenoNoEmpate(T):-
-	T =  [[a,a,a,a,a,b,a],
-          [b,a,b,a,b,a,b],
-          [a,b,a,b,a,b,a],
-          [b,a,b,a,b,a,b],
-          [a,b,a,b,a,b,a],
-          [b,a,b,a,b,a,b]].
-
 /*============EJERCICIO 1===============*/
 
 tableroInicial(T):-
@@ -90,9 +33,9 @@ ingresarFicha([F1, F2|[]], Columna, Ficha, [T1, T2|[]]):- columna(Columna), fich
 
 /*==================EJERCICIO 3======================*/
 
-columnaDisp(Tablero, Columna):-
+columnaDisp(Tablero, Columna):- ficha(X),!,
     columna(Columna),
-    ingresarFicha(Tablero, Columna, _, _).
+    ingresarFicha(Tablero, Columna, X, _).
 
 
 /*==================EJERCICIO 4======================*/
@@ -194,5 +137,77 @@ direccion(1, -1).
 direccion(-1, 1).
 direccion(-1, -1):-!.
 
+/*Ejemplos de Ejecucion*/
 
+tableroEjemplo3a(T):-
+    T =  [[a,-,-,b,-,-,-],
+          [a,-,-,b,-,-,-],
+          [a,-,-,b,-,-,a],
+          [a,-,-,a,-,-,a],
+          [a,-,-,b,a,b,b],
+          [a,a,b,b,a,b,b]].
+
+tableroEjemplo4(T):-
+    T =  [[-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,b,-,-],
+          [-,-,-,-,b,-,-],
+          [-,-,a,-,b,-,-],
+          [b,a,a,a,b,-,-]].
+
+tableroEjemplo9(T):-
+    T =  [[-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,a],
+          [-,-,-,a,-,-,a],
+          [-,-,-,b,a,b,b],
+          [a,a,b,b,a,b,b]].
+
+tableroEjemplo8a(T):-
+    T =  [[-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,a,-,-,-],
+          [-,-,-,a,-,-,-],
+          [b,b,b,a,a,-,-]].
+
+tableroEjemplo8b(T):-
+    T =  [[-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,a,-,-,-,-],
+          [b,b,b,a,-,-,-],
+          [b,b,b,a,a,-,-]].
+
+tableroEjemploJugadaGanadora(T):-
+    T =  [[-,-,-,b,-,-,-],
+          [-,-,-,a,-,-,-],
+          [-,-,-,a,-,-,-],
+          [a,-,b,a,b,b,-],
+          [b,a,a,b,a,b,-],
+          [a,a,b,b,a,b,-]].
+
+tableroEjemplo(T):-
+    T =  [[-,-,-,b,-,-,-],
+          [-,-,-,a,-,-,-],
+          [-,-,-,a,a,-,-],
+          [a,-,b,a,b,b,-],
+          [b,a,a,b,a,b,-],
+          [a,a,b,b,a,b,-]].
+
+tableroEmpate(T):-
+	T =  [[a,a,a,b,a,a,a],
+          [a,b,a,b,a,b,a],
+          [a,a,a,b,a,a,a],
+          [b,b,b,a,b,b,b],
+          [a,a,a,b,a,a,a],
+          [a,b,a,b,a,b,a]].
+
+tableroLlenoNoEmpate(T):-
+	T =  [[a,a,a,a,a,b,a],
+          [b,a,b,a,b,a,b],
+          [a,b,a,b,a,b,a],
+          [b,a,b,a,b,a,b],
+          [a,b,a,b,a,b,a],
+          [b,a,b,a,b,a,b]].
 

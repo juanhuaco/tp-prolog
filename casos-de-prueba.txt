@@ -1,0 +1,39 @@
+========CASOS DE PRUEBA PROLOG==========
+
+====Ejercicio 1====
+
+tableroInicial(T).
+
+====Ejercicio 2====
+
+ingreso de fichas para llegar al tablero mostrado en el tp
+
+tableroInicial(T),
+ingresarFicha(T, 2, a, T2),
+ingresarFicha(T2, 5, b, T3),
+ingresarFicha(T3, 3, a, T4),
+ingresarFicha(T4, 1, b, T5),
+ingresarFicha(T5, 4, a, T6),
+ingresarFicha(T6, 5, b, T7),
+ingresarFicha(T7, 3, a, T8),
+ingresarFicha(T8, 5, b, T9).
+
+====Ejercicio 3====
+
+*con tablero vacio...
+
+tableroInicial(T).
+columnaDisp(T, C).
+
+*con columnas completamente ocupadas ( tablero 3a)
+
+tableroEjemplo3a(T),
+columnaDisp(T,C).
+
+====Ejercicio 4====
+
+tableroEjemplo4(T),
+contenido(T, [1, 1], F1),
+contenido(T, [6, 1], F2),
+contenido(T, [5, 3], F3).
+
