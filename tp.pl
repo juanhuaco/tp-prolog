@@ -109,14 +109,22 @@ jugadaGanadora(Tablero,Ficha,Columna):-
 
 /*==================EJERCICIO 8======================*/
 
-jugadaSegura(Tablero,Ficha,Columna):- columna(Columna), columna(C2), ficha(Ficha), ficha(Rival),
+jugadaSegura(Tablero,Ficha,Columna):-
+    nb_setval(parFichaColumna, []),!,
+    
+    ficha(Ficha), ficha(Rival), columna(Columna),
     Rival\=Ficha,
     ingresarFicha(Tablero, Columna, Ficha, T2),
-    not(jugadaGanadora(T2, Rival, C2)).
+    not(jugadaGanadora(T2, Rival, _C2)),
+    
+    nb_getval(parFichaColumna, M),
+    not(member([Ficha, Columna], M)),
+    append([[Ficha, Columna]], M, NewMemoria),
+    nb_setval(parFichaColumna, NewMemoria).
 
 /*==================EJERCICIO 9======================*/
 
-jugadaDefinitiva(Tablero,Ficha,Columna):- columna(Columna), ficha(Ficha), ficha(Rival),
+jugadaDefinitiva(Tablero,Ficha,Columna):-  ficha(Ficha), ficha(Rival), columna(Columna),
     Rival\=Ficha,
     ingresarFicha(Tablero,Columna,Ficha,T2),
     jugadaSegura(T2, Rival, _).

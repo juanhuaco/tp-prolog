@@ -54,3 +54,16 @@ empate(T).
 
 tableroEjemploJugadaGanadora(T),
 jugadaGanadora(T, F, C).
+
+===Ejercicio 8 ====
+
+tableroEjemplo8a(T),
+jugadaSegura(T, F, C).
+
+tableroEjemplo8b(T),
+jugadaSegura(T, F, C).
+
+tableroEjemplo8c(T),
+jugadaSegura(T, F, C).
+
+===Ejercicio 9 ====
