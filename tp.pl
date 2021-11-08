@@ -49,7 +49,12 @@ contenido([_T|Ts],[Y, X],Ficha):- columna(X), fila(Y),
 
 /*==================EJERCICIO 5======================*/
 
-conecta4(Tablero,Ficha,Retorno):- columna(X), fila(Y), ficha(Ficha),
+
+
+conecta4(Tablero,Ficha,Retorno):- 
+    nb_setval(memoria, []),!,
+    
+    columna(X), fila(Y), ficha(Ficha),
     direccion(Horizontal, Vertical),
     
     Y1 is Y+(Vertical), X1 is X+(Horizontal), 
@@ -60,11 +65,22 @@ conecta4(Tablero,Ficha,Retorno):- columna(X), fila(Y), ficha(Ficha),
     contenido(Tablero, [Y1, X1], Ficha),
     contenido(Tablero, [Y2, X2], Ficha),
     contenido(Tablero, [Y3, X3], Ficha),
-
+	
     Retorno=[[Y, X], 
              [Y1, X1],
              [Y2, X2],
-             [Y3, X3]].
+             [Y3, X3]],
+    
+	RetornoInverso = [[Y3, X3], 
+            		 [Y2, X2],
+          		     [Y1, X1],
+         		     [Y, X]],
+    
+    nb_getval(memoria, M),
+    not(member(Retorno, M)),
+    append([RetornoInverso], M, NewMemoria),
+    nb_setval(memoria, NewMemoria).
+    
 
 /*==================EJERCICIO 6======================*/
 
@@ -166,13 +182,32 @@ tableroEjemplo5(T):-
           [-,-,a,-,b,-,-],
           [b,a,a,a,b,-,-]].
 
-tableroEjemplo9(T):-
-    T =  [[-,-,-,-,-,-,-],
-          [-,-,-,-,-,-,-],
-          [-,-,-,-,-,-,a],
-          [-,-,-,a,-,-,a],
-          [-,-,-,b,a,b,b],
-          [a,a,b,b,a,b,b]].
+tableroEmpate(T):-
+	T =  [[a,a,a,b,a,a,a],
+          [a,b,a,b,a,b,a],
+          [a,a,a,b,a,a,a],
+          [b,b,b,a,b,b,b],
+          [a,a,a,b,a,a,a],
+          [a,b,a,b,a,b,a]].
+
+tableroLlenoNoEmpate(T):-
+	T =  [[a,a,a,a,a,b,a],
+          [b,a,b,a,b,a,b],
+          [a,b,a,b,a,b,a],
+          [b,a,b,a,b,a,b],
+          [a,b,a,b,a,b,a],
+          [b,a,b,a,b,a,b]].
+
+tableroEjemploJugadaGanadora(T):-
+    T =  [[-,-,-,b,-,-,-],
+          [-,-,-,a,-,-,-],
+          [-,-,-,a,-,-,-],
+          [a,-,b,a,b,b,-],
+          [b,a,a,b,a,b,-],
+          [a,a,b,b,a,b,-]].
+
+
+
 
 tableroEjemplo8a(T):-
     T =  [[-,-,-,-,-,-,-],
@@ -190,13 +225,23 @@ tableroEjemplo8b(T):-
           [b,b,b,a,-,-,-],
           [b,b,b,a,a,-,-]].
 
-tableroEjemploJugadaGanadora(T):-
-    T =  [[-,-,-,b,-,-,-],
-          [-,-,-,a,-,-,-],
-          [-,-,-,a,-,-,-],
-          [a,-,b,a,b,b,-],
-          [b,a,a,b,a,b,-],
-          [a,a,b,b,a,b,-]].
+tableroEjemplo8c(T):-
+    T =  [[-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,a,-,-,-,-,-],
+          [a,b,a,-,-,-,-],
+          [a,b,b,a,-,b,-]].
+
+tableroEjemplo9(T):-
+    T =  [[-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,-],
+          [-,-,-,-,-,-,a],
+          [-,-,-,a,-,-,a],
+          [-,-,-,b,a,b,b],
+          [a,a,b,b,a,b,b]].
+
+
 
 tableroEjemplo(T):-
     T =  [[-,-,-,b,-,-,-],
@@ -206,19 +251,5 @@ tableroEjemplo(T):-
           [b,a,a,b,a,b,-],
           [a,a,b,b,a,b,-]].
 
-tableroEmpate(T):-
-	T =  [[a,a,a,b,a,a,a],
-          [a,b,a,b,a,b,a],
-          [a,a,a,b,a,a,a],
-          [b,b,b,a,b,b,b],
-          [a,a,a,b,a,a,a],
-          [a,b,a,b,a,b,a]].
 
-tableroLlenoNoEmpate(T):-
-	T =  [[a,a,a,a,a,b,a],
-          [b,a,b,a,b,a,b],
-          [a,b,a,b,a,b,a],
-          [b,a,b,a,b,a,b],
-          [a,b,a,b,a,b,a],
-          [b,a,b,a,b,a,b]].
 

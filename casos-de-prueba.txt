@@ -42,3 +42,13 @@ contenido(T, [5, 3], F3).
 tableroEjemplo5(T),
 conecta4(T, F, L).
 
+===Ejercicio 6 ====
+
+tableroEmpate(T),
+empate(T).
+
+tableroLlenoNoEmpate(T),
+empate(T).
+
+===Ejercicio 7 ====
+
